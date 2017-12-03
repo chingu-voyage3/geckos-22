@@ -1,2 +1,182 @@
 /* We should probably do this using Webpach */
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/font-awesome/css/font-awesome.min.css";
+
+/* Typography (maybe we should make a seperate file) */
+
+body, button, html, input, select, textarea {
+	color: #333;
+	font: 14px Helvetica Neue, Arial, Helvetica, sans-serif;
+	line-height: 18px;
+	font-weight: 400px;
+}
+
+a {
+	color: #444;
+}
+
+a:hover {
+	color: #111;
+}
+
+ol, ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+/* Font Awesome Icons */
+
+.fa-lg, .fa-sm {
+	color : #999;
+}
+
+.fa-lg {
+	height: 32px;
+	font-size: 20px;
+	line-height: 30px;
+	widht: 30px;
+}
+
+/* Boards Page > Boards Section */
+
+.boards-page-board-section {
+	margin: 0 auto;
+	max-width: 1250px;
+	padding: 20px 16px 0;
+}
+
+.boards-page-board-section-header {
+	margin: 0 0 0 38px;
+	padding: 0 0 11px;
+	position: relative;
+}
+
+.boards-page-board-section-header-icon {
+	left: -38px;
+	position: absolute;
+	top: 0;
+}
+
+.boards-page-board-section-header-name {
+	display: inline-block;
+	line-height: 24px;
+	margin: 3px 0 0;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.boards-page-board-section-list {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.boards-page-board-section-list-item {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 8px 8px 0;
+	position: relative;
+	/* Should add media cases */
+	width: 25%;
+}
+
+.board-tile, .board-tile-fade {
+	border-radius: 3px;
+	display: block;
+}
+
+.board-tile {
+	background-color: #959da1;
+	background-size: cover;
+	background-position: 50%;
+	color: #fff;
+	line-height: 20px;
+	margin: 0 8px 8px 0;
+	padding: 8px;
+	position: relative;
+	text-decoration: none;
+}
+
+.board-tile:hover {
+	color: #fff;
+}
+
+.board-tile-fade {
+	background-color: rgba(0, 0, 0, .15);
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.board-tile-details {
+	display: block;
+	min-height: 64px;
+	padding-right: 40px;
+	position: relative;
+}
+
+.board-tile-details .is-badged {
+	min-height: 64px;
+	padding-bottom: 16px;
+}
+
+.board-tile-details-name {
+	font-size: 16px;
+	font-weight: 700;
+	display: inline-block;
+	overflow: hidden;
+	max-height: 40px;
+}
+
+span[Attributes Style] {
+	unicode-bidi: -webkit-isolate;
+}
+
+.board-tile-options {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 3;
+}
+
+.board-tile-options-star-icon {
+	color: #fff;
+	bottom: 0;
+	font-size: 14px;
+	width: 0;
+	height: 18px;
+	opacity: 0;
+	padding: 8px;
+	right: 0;
+	top: 0;
+	-webkit-transiton-duration: .15s;
+	-webkit-transition-property: color, background, opacity, width, -webkit-transform;
+	transition-property: color, background, opacity, width, -webkit-transform;
+	transition-property: color, background, opacity, transform, -webkit-transform;
+	transition-property: color, background, opacity, width, -webkit-transform;
+}
+
+.board-tile-options-star-icon:hover {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.board-tile-badges {
+	bottom: 8px;
+	opacity: .8;
+	position: absolute;
+}
+
+.board-tags {
+	margin-bottom: 8px;
+}
