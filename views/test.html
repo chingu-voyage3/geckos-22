@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trello Clone</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+    	.box {
+    		background-color: #ccc;
+    		width: 50px;
+    		display: block;
+    	}
+
+    	.icon {
+    		width: 0;
+    		opacity: 0;
+    		-webkit-transition-property: width, opacity; /* Safari */
+    		transition-property: width, opacity;
+    		right: 0;
+    	}
+
+    	.box:hover .icon {
+    		color: #fff;
+    		width: 30px;
+    		opacity: 1;
+    		right: 0;
+    	}
+
+
+	</style>
+</head>
+<body>
+
+	<a class="box" href="#">
+		a
+		<i class="icon fa fa-star"></i>
+	</a>
+    
+</body>
+</html>
