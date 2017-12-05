@@ -238,3 +238,25 @@ span[Attributes Style] {
 .board-tags {
 	margin-bottom: 8px;
 }
+
+.quiet-button {
+	border-radius: 3px;
+	color: #838c91;
+	display: block;
+	margin: 2px 0;
+	padding: 7px 16px;
+	position: relative;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none; 
+}
+
+.quiet-button:hover {
+	background: #d6dadc;
+	color: #4d4d4d;
+}
+
+.u-float-left {
+	float: left;
+}
