@@ -1,33 +1,12 @@
-html, body, header, nav, li, ul, h1, form, input, button {
-  padding: 0;
-  margin: 0;
+
+
+.form-inline {
+  margin-top: 8px;
 }
 
-html {
-  background-color: #4CB963;
-}
-
-body {
-  text-align: center;
-}
-
-header {
-  background-color: #157F1F;
-  padding: 0px 0px 0px 0px;
-}
-
-
-
-.navbar {
-  color: white;
-  padding: 0px 0px 0px 0px;
-  width: 100%;
-}
-
-li {
-  padding: 10px;
-  margin: 10px;
-  font-size: 25px;
-  list-style: none;
-  float: left;
+.logo {
+  position: absolute;
+  left: 50%;
+  margin-left: -50px !important;
+  display: block;
 }
