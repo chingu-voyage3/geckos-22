@@ -1,4 +1,17 @@
 
+
+body, html {
+  height: 100%;
+}
+
+.container {
+  width: 40%;
+  padding-top: 10%;
+}
+
+
+
+
 .form-group {
   padding: 0px;
   margin: 10px auto;
@@ -9,6 +22,6 @@
     margin: 0 auto;
 }
 
-.gery {
+.grey {
   color: grey;
 }
