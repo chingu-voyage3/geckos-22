@@ -1,11 +1,13 @@
 
 
+
+
 body, html {
   height: 100%;
 }
 
-.container {
-  width: 40%;
+.container-fluid {
+  width: 100%;
   padding-top: 10%;
 }
 
