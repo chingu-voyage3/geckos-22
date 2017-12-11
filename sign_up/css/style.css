@@ -1,28 +1,22 @@
 
 
 
-
 body, html {
   height: 100%;
 }
 
 .container-fluid {
-  width: 100%;
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 
 
 .form-group {
   padding: 0px;
-  margin: 10px auto;
+  margin: 10px auto
 }
 
 .button {
     padding: 0px;
     margin: 0 auto;
-}
-
-.grey {
-  color: grey;
 }
