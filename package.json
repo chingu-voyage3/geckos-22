@@ -1,0 +1,22 @@
+{
+    "name": "TrelloClone",
+    "version": "0.0.1",
+    "description": "A Trello clone created by geckos-22 during Chingu Voyage-3",
+    "main": "index.js",
+    "repository": "https://github.com/chingu-voyage3/geckos-22.git",
+    "author": "Geckos-22",
+    "license": "MIT",
+    "scripts": {
+        "build": "browserify app.js -o bundle.js",
+        "watch": "watchify app.js -o bundle.js"
+    },
+    "dependencies": {
+        "bootstrap": "4.0.0-beta.2",
+        "font-awesome": "^4.7.0",
+        "jquery": "^3.2.1"
+    },
+    "devDependencies": {
+        "browserify": "^14.5.0",
+        "watchify": "^3.9.0"
+    }
+}
