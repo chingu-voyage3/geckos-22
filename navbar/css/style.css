@@ -1,0 +1,20 @@
+
+
+h4 {
+  color: white;
+}
+
+img {
+  width: 40px;
+}
+
+a {
+  color: white;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  margin-left: -50px !important;
+  display: block;
+}
