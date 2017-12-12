@@ -1,6 +1,5 @@
 
 
-
 body, html {
   height: 100%;
 }
@@ -19,4 +18,13 @@ body, html {
 .button {
     padding: 0px;
     margin: 0 auto;
+}
+
+p {
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.fa {
+  padding-right: 10px;
 }
