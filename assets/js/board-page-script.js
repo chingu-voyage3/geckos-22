@@ -36,6 +36,23 @@ document.querySelector("#confirmationSuccessBtn").addEventListener("click", func
 function createListItem(content) {
     // Creates new list item, ready for inserting into list
     // "content" is desired value of list item
+
+    //     Example list item code
+    //     <a class="list-group-item list-group-item-action flex-column align-items-start">
+    //     <div class="d-flex">
+    //         <p class="mb-1">Lorem Ipsum</p>
+    //         <div class="btn-group ml-auto">
+    //             <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+    //                         <i class="fa fa-wrench"></i>
+    //                     </button>
+    //             <div class="dropdown-menu dropdown-menu-right">
+    //                 <button class="dropdown-item" type="button">Move</button>
+    //                 <button class="dropdown-item" type="button">Copy</button>
+    //                 <button class="dropdown-item" type="button">Delete</button>
+    //             </div>
+    //         </div>
+    //     </div>
+    // </a>
     let node = document.createElement("a");
     node.className = "list-group-item list-group-item-action flex-column align-items-start";
     node.innerHTML = `
