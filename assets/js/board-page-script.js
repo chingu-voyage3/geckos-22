@@ -78,16 +78,17 @@ function removeListItem(e) {
 
 
 
-function createList(boardName) {
-    // Creates new, empty list and returns it
+function createList(listName, listId) {
+    // Creates new, empty list with set name and id
+    // listId should be numeric value
     let node = document.createElement("div");
     node.className = "col-sm-3"
     node.innerHTML = `
-    <div class="card">
+    <div class="card" id="list-${listId}">
         <div class="card-header">
             <div class="row">
                 <div class="col-sm-9">
-                    <p class="font-weight-bold">${boardName}</p>
+                    <p class="font-weight-bold">${listName}</p>
                 </div>
                 <div class="col-sm-3">
                     <button type="button" class="btn btn-info float-right">Options</button>
@@ -134,5 +135,33 @@ function fetchBoard() {
                 name: "Backlog",
                 items: ["Dashboard - Populate items on page load", "Dashboard - Add actions", "Dashboard - Storage", "Signup Page"]
             }
-        ]};
+        ]
+    };
+
+    return boardStorage;
 }
+
+function displayBoard() {
+    // Displays current Board
+    boardData = fetchBoard();
+    console.log(boardData);
+    displayBoardName(boardData.boardName);
+    // For each stored list create empty list
+    boardData.lists.forEach(list => {
+        console.log(list);
+        // For each list item create node
+        list.items.forEach(item => {
+            console.log(item);
+        });
+    });
+}
+
+displayBoard();
+
+function displayBoardName(name){
+    // Changes displayed board name from placeholder
+    let boardName = document.getElementById("board-name");
+    boardName.innerHTML = name;
+}
+
+// console.log(createList("exampleName", 5))
