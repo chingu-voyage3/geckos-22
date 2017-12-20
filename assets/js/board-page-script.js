@@ -6,8 +6,6 @@ var app = new function () {
         this.fetchBoard();
         // Displays board name to user
         this.displayBoardName(this.board.boardName);
-        // Div in which lists need to be inserted
-        let listsRow = document.querySelector("#lists-row");
 
         // For each list in board object
         for (let index = 0; index < this.board.lists.length; index++) {
@@ -23,7 +21,7 @@ var app = new function () {
                 // Insert newly created list item node into list node at appropriate position(into div with class .list-group, but before div with class .default-footer. This way input for new list item always stays at bottom of list)
                 let listGroupDiv = listNode.querySelector(".list-group");
                 listGroupDiv.insertBefore(listItemNode, listGroupDiv.querySelector(".new-item-input"));
-            }            
+            }
             // Finally insert created node into board
             listsRow.appendChild(listNode);
         }
@@ -37,31 +35,36 @@ var app = new function () {
         // Creates new list item, ready for inserting into list
         // "content" is desired value of list item
 
-        //     Example list item code
-        //     <a class="list-group-item list-group-item-action flex-column align-items-start">
-        //     <div class="d-flex">
-        //         <p class="mb-1">Lorem Ipsum</p>
-        //         <div class="btn-group ml-auto">
-        //             <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-        //                         <i class="fa fa-wrench"></i>
-        //                     </button>
-        //             <div class="dropdown-menu dropdown-menu-right">
-        //                 <button class="dropdown-item" type="button">Move</button>
-        //                 <button class="dropdown-item" type="button">Copy</button>
-        //                 <button class="dropdown-item" type="button">Delete</button>
-        //             </div>
-        //         </div>
+        // Example list item
+        // <a class="list-group-item list-group-item-action flex-column align-items-start">
+        // <div class="d-flex">
+        //     <p class="mb-1">Lorem Ipsum</p>
+        //     <div class="btn-group ml-auto">
+        //         <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+        //             <i class="fa fa-wrench"></i>
+        //         </button>
         //     </div>
+        //     <div class="dropdown-menu dropdown-menu-right">
+        //         <button class="dropdown-item" type="button">Move</button>
+        //         <button class="dropdown-item" type="button">Copy</button>
+        //         <button class="dropdown-item" type="button">Delete</button>
+        //     </div>
+        // </div>
         // </a>
         let node = document.createElement("a");
         node.className = "list-group-item list-group-item-action flex-column align-items-start";
-        node.innerHTML = `
-        <div class="d-flex flex-row-reverse w-100 justify-content-between align-items-baseline">
-        <button type="button" class="btn btn-outline-secondary btn-sm">
-            <i class="fa fa-wrench"></i>
-        </button>
-        </div>
-        <p class="mb-1">${content}</p>
+        node.innerHTML = `<div class="d-flex">
+            <p class="mb-1">${content}</p>
+            <div class="btn-group ml-auto">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i>
+                </button>            
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item move-item-button" type="button">Move</button>
+                    <button class="dropdown-item copy-item-button" type="button">Copy</button>
+                    <button class="dropdown-item delete-item-button" type="button">Delete</button>
+                </div>
+            </div>
         `;
         return node;
     }
@@ -94,7 +97,7 @@ var app = new function () {
             </div>
 
             <div class="card-footer default-footer">
-                <button type="button" class="btn btn-secondary btn-lg btn-block add-item-button">Add new item...</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block add-item-button" id="add-item-button-${listId}">Add new item...</button>
             </div>
             <div class="card-footer confirmation-footer hidden">
                 <button type="button" class="btn btn-success confirm-button">Add Item</button>
@@ -132,6 +135,16 @@ var app = new function () {
         let boardName = document.getElementById("board-name");
         boardName.innerHTML = name;
     }
+
+    this.edit = function (e) {
+        console.log(e);
+    }
+
+    // Listening for event
+    // Div in which lists need to be inserted
+    let listsRow = document.querySelector("#lists-row");
+    listsRow.addEventListener("click", this.edit);
+
 
 
 }
