@@ -90,7 +90,7 @@ var app = new function () {
                 <a class="list-group-item list-group-item-action flex-column align-items-start new-item-input hidden">
                     <form>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Enter content here..." required></textarea>
+                            <textarea class="form-control new-item-textarea" rows="3" placeholder="Enter content here..." required></textarea>
                         </div>
                     </form>
                 </a>
@@ -136,8 +136,51 @@ var app = new function () {
         boardName.innerHTML = name;
     }
 
-    this.edit = function (e) {
-        console.log(e);
+    this.edit = function (e) {        
+        // Check is "Add new item..." button pressed
+        if (e.target.classList.contains("add-item-button")) {            
+            // Select parent card and necessary elements
+            let card = e.target.closest(".card");
+            let defaultFooter = card.querySelector(".default-footer");
+            let newItemInput = card.querySelector(".new-item-input");
+            let confirmationFooter = card.querySelector(".confirmation-footer");
+
+            // Show confirmation footer, text input list item and hide original add new item button
+            app.hideElement(defaultFooter);
+            app.showElement(newItemInput);
+            app.showElement(confirmationFooter);
+            // Add click event listener to confirmation button
+            card.querySelector("button.confirm-button").addEventListener("click", function(){
+                console.log("Confirm button pressed");
+                // Take value from text input and stores it in variable
+                let input = newItemInput.querySelector(".new-item-textarea").value.trim();
+                if(!!input){
+                    console.log(input);
+                }
+                // console.log(input);
+
+            });
+
+            // Add click event listener to cancel button
+            card.querySelector("button.cancel-button").addEventListener("click", function(){
+                // Return list to default view
+                app.showElement(defaultFooter);
+                app.hideElement(newItemInput);
+                app.hideElement(confirmationFooter);
+
+            });
+
+
+
+        }
+    }
+
+    this.hideElement = function(e){
+        e.style.display = "none";
+    }
+
+    this.showElement = function(e){
+        e.style.display = "block";
     }
 
     // Listening for event
