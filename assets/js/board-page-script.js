@@ -45,9 +45,9 @@ var app = new function () {
         //         </button>
         //     </div>
         //     <div class="dropdown-menu dropdown-menu-right">
-        //         <button class="dropdown-item" type="button">Move</button>
-        //         <button class="dropdown-item" type="button">Copy</button>
-        //         <button class="dropdown-item" type="button">Delete</button>
+        //         <button class="dropdown-item move-item-button" type="button">Move</button>
+        //         <button class="dropdown-item copy-item-button" type="button">Copy</button>
+        //         <button class="dropdown-item delete-item-button" type="button">Delete</button>
         //     </div>
         // </div>
         // </a>
