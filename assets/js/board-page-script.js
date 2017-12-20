@@ -1,39 +1,37 @@
-// alert("Test");
+// document.querySelector("#addListItemBtn").addEventListener("click", function () {
+//     // alert("Add list item...");
+//     addListItemDiv.style.display = "none";
+//     addListItemConfirmation.style.display = "block";
+//     liInputDiv.style.display = "block";
+// });
 
-document.querySelector("#addListItemBtn").addEventListener("click", function () {
-    // alert("Add list item...");
-    addListItemDiv.style.display = "none";
-    addListItemConfirmation.style.display = "block";
-    liInputDiv.style.display = "block";
-});
-
-document.querySelector(".lists-row").addEventListener("click", removeListItem);
+// document.querySelector("#lists-row").addEventListener("click", removeListItem);
 
 
 
-var addListItemDiv = document.querySelector("#addListItemDiv");
-var addListItemConfirmation = document.querySelector("#addListItemConfirmation");
-var confirmationCancelBtn = document.querySelector("#confirmationCancelBtn").addEventListener("click", function () {
-    addListItemDiv.style.display = "block";
-    addListItemConfirmation.style.display = "none";
-    liInputDiv.style.display = "none";
-});
+// var addListItemDiv = document.querySelector("#addListItemDiv");
+// var addListItemConfirmation = document.querySelector("#addListItemConfirmation");
+// var confirmationCancelBtn = document.querySelector("#confirmationCancelBtn").addEventListener("click", function () {
+//     addListItemDiv.style.display = "block";
+//     addListItemConfirmation.style.display = "none";
+//     liInputDiv.style.display = "none";
+// });
 
-var listItemTextInput = document.querySelector("#listItemTextInput");
+// var listItemTextInput = document.querySelector("#listItemTextInput");
 
-var liInputDiv = document.querySelector("#liInputDiv");
+// var liInputDiv = document.querySelector("#liInputDiv");
 
-var list0 = document.querySelector("#list0");
-document.querySelector("#confirmationSuccessBtn").addEventListener("click", function () {
-    let liText = listItemTextInput.value;
-    // list0.appendChild(createListItem(liText));
-    // Inserts new list item before input field, so div with textarea always spawns at bottom of list
-    list0.insertBefore(createListItem(liText), document.querySelector("#liInputDiv"));
-    addListItemDiv.style.display = "block";
-    addListItemConfirmation.style.display = "none";
-    liInputDiv.style.display = "none";
-    listItemTextInput.value = "";
-});
+// var list0 = document.querySelector("#list0");
+// document.querySelector("#confirmationSuccessBtn").addEventListener("click", function () {
+//     let liText = listItemTextInput.value;
+//     // list0.appendChild(createListItem(liText));
+//     // Inserts new list item before input field, so div with textarea always spawns at bottom of list
+//     list0.insertBefore(createListItem(liText), document.querySelector("#liInputDiv"));
+//     addListItemDiv.style.display = "block";
+//     addListItemConfirmation.style.display = "none";
+//     liInputDiv.style.display = "none";
+//     listItemTextInput.value = "";
+// });
 
 function createListItem(content) {
     // Creates new list item, ready for inserting into list
@@ -146,14 +144,28 @@ function displayBoard() {
     boardData = fetchBoard();
     console.log(boardData);
     displayBoardName(boardData.boardName);
-    // For each stored list create empty list
-    boardData.lists.forEach(list => {
-        console.log(list);
-        // For each list item create node
-        list.items.forEach(item => {
-            console.log(item);
-        });
-    });
+    let listsRow = document.querySelector("#lists-row");
+
+    // For each list
+    for (let index = 0; index < boardData.lists.length; index++) {
+        const list = boardData.lists[index];
+        // Create new empty list node, set name and ID
+        let listNode = createList(list.name, index);
+        // Create individual list items and insert them into list node
+        // For each list item
+        for (let index = 0; index < list.items.length; index++) {
+            const listItem = list.items[index];
+            // Create new list item element/node
+            let listItemNode = createListItem(listItem);
+            // Insert newly created list item node into list node at appropriate position(into div with class .list-group, but before div with class .default-footer. This way input for new list item always stays at bottom of list)
+            let listGroupDiv = listNode.querySelector(".list-group");
+            listGroupDiv.insertBefore(listItemNode, listGroupDiv.querySelector(".new-item-input")); 
+        }
+        console.log(listNode);
+        // Finally insert created node into board
+        listsRow.appendChild(listNode);
+        
+    }
 }
 
 displayBoard();
