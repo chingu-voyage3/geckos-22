@@ -8,16 +8,17 @@ var app = new function () {
         this.displayBoardName(this.board.boardName);
 
         // For each list in board object
-        for (let index = 0; index < this.board.lists.length; index++) {
-            const list = this.board.lists[index];
+        for (let listIndex = 0; listIndex < this.board.lists.length; listIndex++) {
+            const list = this.board.lists[listIndex];
             // Create new empty list node, set name and ID
-            let listNode = this.createList(list.name, index);
+            let listNode = this.createList(list.name, listIndex);
             // Create individual list items and insert them into list node
             // For each list item
-            for (let index = 0; index < list.items.length; index++) {
-                const listItem = list.items[index];
+            for (let itemIndex = 0; itemIndex < list.items.length; itemIndex++) {
+                const listItem = list.items[itemIndex];
+                const listItemId = listIndex + "-" + itemIndex;
                 // Create new list item element/node
-                let listItemNode = this.createListItem(listItem);
+                let listItemNode = this.createListItem(listItem, listItemId);
                 // Insert newly created list item node into list node at appropriate position(into div with class .list-group, but before div with class .default-footer. This way input for new list item always stays at bottom of list)
                 let listGroupDiv = listNode.querySelector(".list-group");
                 listGroupDiv.insertBefore(listItemNode, listGroupDiv.querySelector(".new-item-input"));
@@ -31,12 +32,12 @@ var app = new function () {
     // Board contents are currently stored in object
     this.board = {};
 
-    this.createListItem = function (content) {
+    this.createListItem = function (content, id) {
         // Creates new list item, ready for inserting into list
         // "content" is desired value of list item
 
         // Example list item
-        // <a class="list-group-item list-group-item-action flex-column align-items-start">
+        // <a class="list-group-item list-group-item-action flex-column align-items-start" id="listIndex-listItemIndex">
         // <div class="d-flex">
         //     <p class="mb-1">Lorem Ipsum</p>
         //     <div class="btn-group ml-auto">
@@ -53,6 +54,7 @@ var app = new function () {
         // </a>
         let node = document.createElement("a");
         node.className = "list-group-item list-group-item-action flex-column align-items-start";
+        node.id = id;
         node.innerHTML = `<div class="d-flex">
             <p class="mb-1">${content}</p>
             <div class="btn-group ml-auto">
