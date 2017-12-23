@@ -179,7 +179,6 @@ var app = new function () {
                     app.board.lists[cardIndex].items.push(input);
                     // Clear input
                     newItemInput.querySelector(".new-item-textarea").value = "";
-
                     // Display board to show changes
                     app.updateBoard();
 
@@ -201,6 +200,22 @@ var app = new function () {
 
 
 
+        }
+
+        // Check is delete item button in item dropdown menu pressed
+        if (e.target.classList.contains("delete-item-button")) {
+            console.log("Delete item");
+            // Find list items's ID
+            const itemId = e.target.closest(".list-group-item").id;
+
+            // Item ID is in format "listIndex-itemIndex"
+            // First it finds position of dash(-). listIndex if part of string left of dash, and itemIndex is part of string right of dash. This way should work even for large boards, with double and triple digits.
+            let listIndex = itemId.substring(0, itemId.search("-"));
+            let itemIndex = itemId.substring(itemId.search("-") + 1);
+
+            // Delete item at location board.lists[listIndex]
+            app.board.lists[listIndex].items.splice(itemIndex, 1);
+            app.updateBoard();
         }
     }
 
