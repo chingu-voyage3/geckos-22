@@ -1,11 +1,25 @@
 var app = new function () {
-    this.displayAll = function () {
-        // Displays current Board
+    this.startup = function () {
+        // Displays board at startup
+        // Board is fetched only on startup, on update it's fetched from browser memory
+
         // Fetches board contents
         // to-do: add check if board object is empty and display some kind of error
         this.fetchBoard();
+
         // Displays board name to user
         this.displayBoardName(this.board.boardName);
+
+        // Update board
+        this.updateBoard();
+
+    }
+
+    this.updateBoard = function () {
+        // Updates displayed board
+
+        //Clears display
+        listsRow.innerHTML = "";
 
         // For each list in board object
         for (let listIndex = 0; listIndex < this.board.lists.length; listIndex++) {
@@ -26,7 +40,6 @@ var app = new function () {
             // Finally insert created node into board
             listsRow.appendChild(listNode);
         }
-
     }
 
     // Board contents are currently stored in object
@@ -138,9 +151,9 @@ var app = new function () {
         boardName.innerHTML = name;
     }
 
-    this.edit = function (e) {        
+    this.edit = function (e) {
         // Check is "Add new item..." button pressed
-        if (e.target.classList.contains("add-item-button")) {            
+        if (e.target.classList.contains("add-item-button")) {
             // Select parent card and necessary elements
             let card = e.target.closest(".card");
             let defaultFooter = card.querySelector(".default-footer");
@@ -151,24 +164,38 @@ var app = new function () {
             app.hideElement(defaultFooter);
             app.showElement(newItemInput);
             app.showElement(confirmationFooter);
+
             // Add click event listener to confirmation button
-            card.querySelector("button.confirm-button").addEventListener("click", function(){
+            card.querySelector("button.confirm-button").addEventListener("click", function () {
                 console.log("Confirm button pressed");
                 // Take value from text input and stores it in variable
                 let input = newItemInput.querySelector(".new-item-textarea").value.trim();
-                if(!!input){
+                // Input validation, if input is empty or null execution doesn't continue
+                if (!!input) {
                     console.log(input);
+                    // Find card index, card has id in format "list-xx", so index can be retrieved by reading string from position 5 until end
+                    const cardIndex = card.id.substr(5);
+                    // Push item to end of array                    
+                    app.board.lists[cardIndex].items.push(input);
+                    // Clear input
+                    newItemInput.querySelector(".new-item-textarea").value = "";
+
+                    // Display board to show changes
+                    app.updateBoard();
+
                 }
-                // console.log(input);
 
             });
 
             // Add click event listener to cancel button
-            card.querySelector("button.cancel-button").addEventListener("click", function(){
+            card.querySelector("button.cancel-button").addEventListener("click", function () {
                 // Return list to default view
                 app.showElement(defaultFooter);
                 app.hideElement(newItemInput);
                 app.hideElement(confirmationFooter);
+
+                // Clear input
+                newItemInput.querySelector(".new-item-textarea").value = "";
 
             });
 
@@ -177,11 +204,11 @@ var app = new function () {
         }
     }
 
-    this.hideElement = function(e){
+    this.hideElement = function (e) {
         e.style.display = "none";
     }
 
-    this.showElement = function(e){
+    this.showElement = function (e) {
         e.style.display = "block";
     }
 
@@ -189,17 +216,7 @@ var app = new function () {
     // Div in which lists need to be inserted
     let listsRow = document.querySelector("#lists-row");
     listsRow.addEventListener("click", this.edit);
-
-
-
 }
 
 
-// function removeListItem(e) {
-//     // console.log(e.target.classList);
-//     if (e.target.classList.contains("delete-button")) {
-//         console.log("delete item");
-//     }
-// }
-
-app.displayAll();
+app.startup();
