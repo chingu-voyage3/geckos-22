@@ -40,6 +40,10 @@ var app = new function () {
             // Finally insert created node into board
             listsRow.appendChild(listNode);
         }
+
+        // Insert card with inputs for new list at end of row
+        listsRow.appendChild(app.createNewListCard());
+
     }
 
     // Board contents are currently stored in object
@@ -127,6 +131,32 @@ var app = new function () {
             </div>
         </div>`;
 
+        return node;
+    }
+
+    this.createNewListCard = function(){
+        // Creates new card with inputs for creating new list
+        let node = document.createElement("div");
+        node.className = "col-sm-3";
+        node.innerHTML = `
+        <div class="card new-list-card">
+            <div class="card-header">
+                <button type="button" class="btn btn-secondary btn-lg btn-block new-list-button">Add a list...</button>
+            </div>
+            <div class="list-group new-list-input hidden">
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    <form>
+                        <div class="form-group">
+                            <textarea class="form-control new-list-textarea" rows="3" placeholder="Enter name here..." required=""></textarea>
+                        </div>
+                    </form>
+                </a>
+            </div>
+            <div class="card-footer list-confirmation-footer hidden">
+                <button type="button" class="btn btn-success list-confirm-button">Add list</button>
+                <button type="button" class="btn btn-danger list-cancel-button">Cancel</button>
+            </div>
+        </div>`;
         return node;
     }
 
@@ -234,6 +264,8 @@ var app = new function () {
             }
 
         }
+
+
     }
 
     this.hideElement = function (e) {
