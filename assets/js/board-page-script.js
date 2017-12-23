@@ -58,7 +58,7 @@ var app = new function () {
         //             <i class="fa fa-wrench"></i>
         //         </button>
         //     </div>
-        //     <div class="dropdown-menu dropdown-menu-right">
+        //     <div class="dropdown-menu dropdown-menu-right text-center">
         //         <button class="dropdown-item move-item-button" type="button">Move</button>
         //         <button class="dropdown-item copy-item-button" type="button">Copy</button>
         //         <button class="dropdown-item delete-item-button" type="button">Delete</button>
@@ -74,7 +74,7 @@ var app = new function () {
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-wrench"></i>
                 </button>            
-                <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-right text-center">
                     <button class="dropdown-item move-item-button" type="button">Move</button>
                     <button class="dropdown-item copy-item-button" type="button">Copy</button>
                     <button class="dropdown-item delete-item-button" type="button">Delete</button>
@@ -92,12 +92,19 @@ var app = new function () {
         node.innerHTML = `
         <div class="card" id="list-${listId}">
             <div class="card-header">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <p class="font-weight-bold">${listName}</p>
-                    </div>
-                    <div class="col-sm-3">
-                        <button type="button" class="btn btn-info float-right">Options</button>
+                <div class="float-left">
+                    <p class="font-weight-bold">${listName}</p>
+                </div>
+                <div class="float-right">
+                    <div class="dropdown d-inline-block">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Options</button>
+                        <div class="dropdown-menu dropdown-menu-right text-center">
+                            <button class="dropdown-item add-item-button" type="button">Add new item</button>
+                            <button class="dropdown-item move-list-button" type="button">Move list</button>
+                            <button class="dropdown-item copy-list-button" type="button">Copy list</button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item delete-list-button" type="button">Delete list</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,7 +159,7 @@ var app = new function () {
     }
 
     this.edit = function (e) {
-        // Check is "Add new item..." button pressed
+        // Check if "Add new item..." button was pressed
         if (e.target.classList.contains("add-item-button")) {
             // Select parent card and necessary elements
             let card = e.target.closest(".card");
@@ -202,7 +209,7 @@ var app = new function () {
 
         }
 
-        // Check is delete item button in item dropdown menu pressed
+        // Check if delete item button in item dropdown menu was pressed
         if (e.target.classList.contains("delete-item-button")) {
             console.log("Delete item");
             // Find list items's ID
