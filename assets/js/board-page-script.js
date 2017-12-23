@@ -211,7 +211,6 @@ var app = new function () {
 
         // Check if delete item button in item dropdown menu was pressed
         if (e.target.classList.contains("delete-item-button")) {
-            console.log("Delete item");
             // Find list items's ID
             const itemId = e.target.closest(".list-group-item").id;
 
@@ -223,6 +222,17 @@ var app = new function () {
             // Delete item at location board.lists[listIndex]
             app.board.lists[listIndex].items.splice(itemIndex, 1);
             app.updateBoard();
+        }
+
+        // Check if delete list button was pressed
+        if (e.target.classList.contains("delete-list-button")) {
+            if (confirm("Are you sure you want to delete this list?")) {
+                // Find list index. List has id in format "list-listIndex"
+                const listIndex = e.target.closest(".card").id.substring(5);
+                app.board.lists.splice(listIndex, 1);
+                app.updateBoard();
+            }
+
         }
     }
 
