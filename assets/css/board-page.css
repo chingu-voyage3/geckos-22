@@ -1,7 +1,7 @@
 /* Custom bootstrap styles */
 
-body {
-    padding-top: 5rem;
+main.container-fluid {
+    padding-top: 7rem;
 }
 
 .starter-template {
@@ -11,4 +11,10 @@ body {
 
 .hidden {
     display: none;
+}
+
+.fixed-top-2 {
+    margin-top: 56px;
+    margin-bottom: 25px;
+    z-index: 1000;
 }

@@ -7,9 +7,6 @@ var app = new function () {
         // to-do: add check if board object is empty and display some kind of error
         this.fetchBoard();
 
-        // Displays board name to user
-        this.displayBoardName(this.board.boardName);
-
         // Update board
         this.updateBoard();
 
@@ -17,6 +14,12 @@ var app = new function () {
 
     this.updateBoard = function () {
         // Updates displayed board
+
+        // Displays board name to user
+        this.displayBoardName(this.board.boardName);
+
+        // Display star status
+        this.showStar(this.board.star);
 
         //Clears display
         listsRow.innerHTML = "";
@@ -165,7 +168,7 @@ var app = new function () {
         // Later could be replaced with API call
         this.board = {
             boardName: "Trello Clone",
-            bookmark: true,
+            star: false,
             lists: [{
                     name: "Resources",
                     items: ["Google Drive", "Project Docs", "GitHub Repo"]
@@ -177,6 +180,10 @@ var app = new function () {
                 {
                     name: "Backlog",
                     items: ["Dashboard - Populate items on page load", "Dashboard - Add actions", "Dashboard - Storage", "Signup Page"]
+                },
+                {
+                    name: "Resources",
+                    items: ["Google Drive", "Project Docs", "GitHub Repo"]
                 }
             ]
         };
@@ -326,10 +333,29 @@ var app = new function () {
         e.style.display = "block";
     }
 
+    this.showStar = function (value) {
+        let toggleStar = document.getElementById("toggle-star");
+        if (value === true) {
+            // Show board as starred
+            toggleStar.innerHTML = `<button type="button" class="btn btn-outline-success nav-item starred"><i class="fa fa-star"></i></button>`;
+        } else {
+            // Show board as unstarred
+            toggleStar.innerHTML = `<button type="button" class="btn btn-outline-info nav-item unstarred"><i class="fa fa-star-o"></i></button>`;
+        }
+    }
+
+
+
     // Listening for event
     // Div in which lists need to be inserted
     let listsRow = document.querySelector("#lists-row");
     listsRow.addEventListener("click", this.edit);
+
+    // Toggle star on and off
+    document.querySelector("#toggle-star").addEventListener("click", function () {
+        app.board.star = !app.board.star;
+        app.updateBoard();
+    });
 }
 
 
