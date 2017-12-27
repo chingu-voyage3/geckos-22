@@ -42,7 +42,7 @@ var app = new function () {
         }
 
         // Insert card with inputs for new list at end of row
-        listsRow.appendChild(app.createNewListCard());
+        listsRow.appendChild(app.createNewListInput());
 
     }
 
@@ -134,7 +134,7 @@ var app = new function () {
         return node;
     }
 
-    this.createNewListCard = function(){
+    this.createNewListInput = function () {
         // Creates new card with inputs for creating new list
         let node = document.createElement("div");
         node.className = "col-sm-3";
@@ -204,12 +204,10 @@ var app = new function () {
 
             // Add click event listener to confirmation button
             card.querySelector("button.confirm-button").addEventListener("click", function () {
-                console.log("Confirm button pressed");
                 // Take value from text input and stores it in variable
                 let input = newItemInput.querySelector(".new-item-textarea").value.trim();
                 // Input validation, if input is empty or null execution doesn't continue
                 if (!!input) {
-                    console.log(input);
                     // Find card index, card has id in format "list-xx", so index can be retrieved by reading string from position 5 until end
                     const cardIndex = card.id.substr(5);
                     // Push item to end of array                    
@@ -262,6 +260,58 @@ var app = new function () {
                 app.board.lists.splice(listIndex, 1);
                 app.updateBoard();
             }
+
+        }
+
+        // Check if add new list button was pressed
+        if (e.target.classList.contains("new-list-button")) {
+            // Select parent card
+            let card = e.target.closest(".card");
+
+            // Select necessary parts of card for manipulation
+            let header = card.querySelector(".card-header");
+            let confirmationFooter = card.querySelector(".list-confirmation-footer");
+            let inputItem = card.querySelector(".new-list-input");
+            let textarea = card.querySelector(".new-list-textarea");
+
+            // Hide default button/card header, show item with name input for new list and show confirmation footer
+            app.hideElement(header);
+            app.showElement(inputItem);
+            app.showElement(confirmationFooter);
+
+            // Add click event listener to confirmation button
+            card.querySelector("button.list-confirm-button").addEventListener("click", function () {
+                // Take value from text input and stores it in variable
+                let input = textarea.value.trim();
+                // Input validation, if input is empty or null execution doesn't continue
+                if (!!input) {
+                    // Create object for new list and populate name with value from textarea
+                    let newList = {
+                        name: input,
+                        items: []
+                    };
+                    // Push item to end of array                    
+                    app.board.lists.push(newList);
+                    // Clear input
+                    textarea.value = "";
+                    // Display board to show changes
+                    app.updateBoard();
+
+                }
+
+            });
+
+            // Add click event listener to cancel button
+            card.querySelector("button.list-cancel-button").addEventListener("click", function () {
+                // Return list to default view
+                app.showElement(header);
+                app.hideElement(inputItem);
+                app.hideElement(confirmationFooter);
+
+                // Clear input
+                textarea.value = "";
+
+            });
 
         }
 
